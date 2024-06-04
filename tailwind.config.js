@@ -14,7 +14,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        
+        decloth: 'url("/de-cloth.png")',
       },
     },
   },
