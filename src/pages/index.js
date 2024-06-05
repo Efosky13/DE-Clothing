@@ -3,16 +3,17 @@ import ProductList from '../components/ProductList';
 import {FaShirt} from "react-icons/fa6"
 import { clothingProducts } from '@/data/product';
 import Carousel from '@/components/Carousel';
+import ProductCard from '@/components/ProductCard';
 import { GiSleevelessJacket, GiHoodie, GiRolledCloth, GiShorts, GiDress } from "react-icons/gi";
 
 const cP = clothingProducts.filter(cloth => cloth.name)
 
 export default function Home() {
   return (
-    <div className='absolute h-full w-full bg-cover bg-center bg-decloth mix-blend-color-burn'>
+    <div className='fixed h-full w-full bg-cover bg-center bg-decloth mix-blend-color-burn'>
       <div className=' grid grid-cols-4 gap-4 grid-rows-4 mt-3'>
         <div className=' col-span-1 col-start-1 bg-white group-hover:text-yellow-500 row-span-2 px-4 py-4 gap-y-28 rounded-md border'>
-         {cP.map(cp => {
+         {clothingProducts.map(cp => {
           return (
             <div key={cp.id} className=' hover:text-yellow-500 flex items-center'>
               <span>{cp.icons}</span>
@@ -32,6 +33,7 @@ export default function Home() {
 
         </div>
       </div>
+     
     </div>
   );
 }

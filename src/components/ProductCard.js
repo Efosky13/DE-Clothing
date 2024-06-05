@@ -1,10 +1,13 @@
-// src/components/ProductCard.js
+import { useCart } from "@/context/cartContext";
 import Image from "next/image";
+import { FaCartPlus } from "react-icons/fa6";
 
-const ProductCard = ({ product }) => {
+export default function ProductCard({ product }) {
+  const { addToCart } = useCart();
+
   return (
     <div className="border rounded-lg overflow-hidden shadow-lg">
-      <Image src={product.image} alt={product.name} className="w-full h-48 object-cover" />
+      <Image src={product.image} alt={product.name} className="w-full h-48 object-cover" width={300} height={300} />
       <div className="p-4">
         <div className="flex items-center mb-2">
           {product.icons}
@@ -21,9 +24,14 @@ const ProductCard = ({ product }) => {
             <span key={index} className="inline-block w-6 h-6 rounded-full" style={{ backgroundColor: color.toLowerCase() }}></span>
           ))}
         </div>
+        <button
+          className="flex text-center items-center align-middle object-center bg-yellow-500 p-4 rounded-md my-4"
+          onClick={() => addToCart(product)}
+        >
+          <span><FaCartPlus /></span>
+          <span className="ml-1">Add to Cart</span>
+        </button>
       </div>
     </div>
   );
-};
-
-export default ProductCard;
+}

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { AiFillProduct } from "react-icons/ai";
 import Image from "next/image";
 import { TbPackageOff, TbCreditCardRefund } from "react-icons/tb";
 import { CiCreditCard1 } from "react-icons/ci";
@@ -15,6 +16,7 @@ import { FaHeart } from "react-icons/fa";
 import { RiMessage2Line } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
+import { useCart } from "@/context/cartContext";
 
 const wrapperVariants = {
   open: {
@@ -62,6 +64,7 @@ const actionIconVariants = {
 
 export default function Navbar() {
   const router = useRouter();
+  const { cartItems } = useCart();
   const isCartPage = router.pathname === "/cart";
   const [isAccOpen, setIsAccOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
@@ -117,6 +120,12 @@ export default function Navbar() {
         </button>
       </div>
       <div className="flex gap-4 items-center">
+        <div className=" hover:cursor-pointer flex items-center">
+          <Link className=" flex items-center" href={'/products'}>
+            <span><AiFillProduct /></span>
+          <span className="ml-1">Our Products</span>
+          </Link>
+        </div>
         <motion.div
           initial={false}
           animate={isAccOpen ? "open" : "closed"}
@@ -267,8 +276,13 @@ export default function Navbar() {
             <span>{isHelpOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
           </div>
         </div>
-        <Link className="flex items-center gap-x-2" href={"/cart"}>
-          <FaCartShopping />
+        <Link className="flex relative items-center gap-x-2" href={"/cart"}>
+        <FaCartShopping />
+        {cartItems && cartItems.length > 0 && (
+           <span className="absolute top-0 right-14 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full -translate-y-2 translate-x-2">
+             {cartItems.length}
+           </span>
+         )}
           <span className="ml-1">Cart</span>
         </Link>
       </div>
