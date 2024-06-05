@@ -1,15 +1,21 @@
 import "../styles/globals.css";
 import { Provider } from "react-redux";
-import Example from "@/components/Loader";
+import { useRouter } from "next/router";
 import { store } from "@/store/store";
 import Layout from "@/components/Layout";
+import {motion, AnimatePresence} from "framer-motion"
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
   return(
-    <Provider store={store}>
     <Layout>
+      <AnimatePresence mode="wait">
+      <Provider store={store}>
+      <motion.div key={router.route}>
       <Component {...pageProps} />
-    </Layout>
+      </motion.div>
     </Provider>
+    </AnimatePresence>
+    </Layout>
   )
 }

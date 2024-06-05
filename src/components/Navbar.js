@@ -120,7 +120,6 @@ export default function Navbar() {
         <motion.div
           initial={false}
           animate={isAccOpen ? "open" : "closed"}
-          transition={{ duration: 1 }}
           className="relative"
         >
           <motion.div
