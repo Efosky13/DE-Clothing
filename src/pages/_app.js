@@ -1,7 +1,6 @@
 import "../styles/globals.css";
 import { CartProvider } from "@/context/cartContext";
 import { useRouter } from "next/router";
-import { store } from "@/store/store";
 import Layout from "@/components/Layout";
 import {motion, AnimatePresence} from "framer-motion"
 
