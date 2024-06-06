@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaTachometerAlt, FaUser, FaShoppingCart } from "react-icons/fa";
 import { AiOutlineLogout } from "react-icons/ai";
-import { useCart } from "@/context/cartContext"; // Assuming you have a CartContext
+import { useCart } from "@/context/cartContext";
 
 const initialOrders = [
   {
