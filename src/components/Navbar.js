@@ -10,7 +10,7 @@ import { FaCartShopping, FaLocationDot } from "react-icons/fa6";
 import { MdOutlineClose } from "react-icons/md";
 import { HiUser } from "react-icons/hi2";
 import { IoIosArrowDown, IoIosArrowUp, IoIosLogIn } from "react-icons/io";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiPackage } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { RiMessage2Line } from "react-icons/ri";
@@ -70,6 +70,7 @@ export default function Navbar() {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -91,8 +92,21 @@ export default function Navbar() {
     setSearchQuery("");
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="flex justify-between align-center p-[1rem]">
+    <nav className={`flex justify-between z-50 top-0 sticky align-center p-[1rem] ${scrolled ? " bg-white shadow-md" : "bg-transparent"}`}>
+
       <div className="flex items-center">
         {isCartPage && (
           <button className="mr-3" onClick={toggleMenu}>
@@ -104,7 +118,7 @@ export default function Navbar() {
           <Link href={"/"}><Image src={'/logo.svg'} width={220} height={48} alt="" priority={true} /></Link>
         </div>
       </div>
-      <div onSubmit={handleSearch} className="flex gap-2">
+      <div onSubmit={handleSearch} className="lg:flex sm:block w-64 gap-2">
         <input
           type="text"
           placeholder="Search Products, Brands and Categories"
@@ -123,7 +137,7 @@ export default function Navbar() {
         <div className=" hover:cursor-pointer flex items-center">
           <Link className=" flex items-center" href={'/products'}>
             <span><AiFillProduct /></span>
-          <span className="ml-1">Our Products</span>
+          <span className="lg:ml-1 md:flex hidden">Our Products</span>
           </Link>
         </div>
         <motion.div
@@ -138,13 +152,15 @@ export default function Navbar() {
             className="absolute top-full -left-[100px] transform -translate-x-[130px] mt-2 bg-white border overflow-hidden rounded-md shadow-md w-56"
           >
             <motion.div className="p-4 text-center">
-              <motion.div variants={itemVariants} className="flex">
+              <motion.div variants={itemVariants}>
+                <Link href={'/signup'}>
                 <button className="w-full flex items-center py-2 rounded-md bg-yellow-500 px-4 text-left">
                   <motion.span variants={actionIconVariants}>
                     <IoIosLogIn />
                   </motion.span>
                   <span className="ml-1">Sign In</span>
                 </button>
+                </Link>
               </motion.div>
               <motion.div variants={itemVariants}>
                 <Link href="/">
@@ -184,8 +200,8 @@ export default function Navbar() {
             onClick={toggleAccount}
           >
             <HiUser />
-            <span className="ml-1">Account</span>
-            <motion.span variants={iconVariants}>
+            <span className="lg:ml-1 md:flex hidden">Account</span>
+            <motion.span className="md:flex hidden" variants={iconVariants}>
               {isAccOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </motion.span>
           </motion.div>
@@ -272,8 +288,10 @@ export default function Navbar() {
             onClick={toggleHelp}
           >
             <TfiHeadphoneAlt />
-            <span className="ml-1">Help</span>
-            <span>{isHelpOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
+            <span className="lg:ml-1 md:flex hidden">Help</span>
+            <motion.span
+            variants={iconVariants}
+            className="md:flex hidden">{isHelpOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</motion.span>
           </div>
         </div>
         <Link className="flex relative items-center gap-x-2" href={"/cart"}>
@@ -283,7 +301,7 @@ export default function Navbar() {
              {cartItems.length}
            </span>
          )}
-          <span className="ml-1">Cart</span>
+          <span className="lg:ml-1 md:flex hidden">Cart</span>
         </Link>
       </div>
     </nav>

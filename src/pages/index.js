@@ -4,6 +4,7 @@ import {FaShirt} from "react-icons/fa6"
 import { clothingProducts } from '@/data/product';
 import Carousel from '@/components/Carousel';
 import ProductCard from '@/components/ProductCard';
+import Header from '@/components/Header';
 import { GiSleevelessJacket, GiHoodie, GiRolledCloth, GiShorts, GiDress } from "react-icons/gi";
 
 const cP = clothingProducts.filter(cloth => cloth.name)
@@ -11,7 +12,8 @@ const cP = clothingProducts.filter(cloth => cloth.name)
 export default function Home() {
   return (
     <div className='fixed h-full w-full bg-cover bg-center bg-decloth mix-blend-color-burn'>
-      <div className=' grid grid-cols-4 gap-4 grid-rows-4 mt-3'>
+      <Header />
+      <div className=' grid lg:grid-cols-4 sm:grid-cols-1 gap-4 lg:grid-rows-4 mt-3'>
         <div className=' col-span-1 col-start-1 bg-white group-hover:text-yellow-500 row-span-2 px-4 py-4 gap-y-28 rounded-md border'>
          {clothingProducts.map(cp => {
           return (
