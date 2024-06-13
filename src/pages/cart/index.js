@@ -11,14 +11,17 @@ export default function Cart() {
         {cartItems.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
-          <div className=' grid grid-cols-2 gap-2'>
+          <div className=' grid grid-cols-2 gap-2 py-2 rounded-md'>
             {cartItems.map((item, index) => (
-              <div key={index} className="border-b py-2">
-                <div className="flex items-center">
-                  <Image src={item.image} alt={item.name} className="w-16 h-16 object-cover" width={400} height={400} />
+              <div key={index}>
+                <div className="flex items-center border-b-2 hover:shadow-md">
+                  <Image src={item.image} alt={item.name} className="w-16 ml-3 rounded-md h-16 object-cover" width={400} height={400} />
+                  <div className=' justify-between'>
                   <div className="ml-4">
                     <h2 className="text-xl">{item.name}</h2>
                     <p className="text-gray-700">${item.price.toFixed(2)}</p>
+                  </div>
+                <button className=' ml-4'>Place Order</button>
                   </div>
                 </div>
               </div>

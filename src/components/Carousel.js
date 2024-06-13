@@ -35,14 +35,14 @@ const Images = ({ imgIndex }) => {
               backgroundImage: `url(${imgSrc})`,
               backgroundSize: "cover", // or "contain" based on your preference
               backgroundPosition: "center",
-              height: "100%", // Make the image div take the full height of the container
-              width: "100%", // Make the image div take the full width of the container
+              height: "100%",
+              width: "100%",
             }}
             animate={{
               scale: imgIndex === idx ? 0.95 : 0.85,
             }}
             transition={SPRING_OPTIONS}
-            className="aspect-video w-full shrink-0 rounded-xl bg-neutral-800 object-cover" // Updated width class to w-full
+            className="lg:aspect-video sm:aspect-auto w-full shrink-0 rounded-xl lg:bg-neutral-800 object-cover" // Updated width class to w-full
           />
         );
       })}
@@ -59,7 +59,7 @@ const Dots = ({ imgIndex, setImgIndex }) => {
           <button
             key={idx}
             onClick={() => setImgIndex(idx)}
-            className={`h-3 w-3 rounded-full transition-colors ${
+            className={`h-2 w-2 rounded-full transition-colors ${
               idx === imgIndex ? "bg-neutral-50" : "bg-neutral-500"
             }`}
           />
@@ -109,7 +109,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative overflow-hidden bg-neutral-950 py-8 h-72 rounded-md"> {/* Adjust height here */}
+    <div className="relative overflow-hidden bg-neutral-950 py-8 h-full rounded-md"> {/* Adjust height here */}
       <motion.div
         drag="x"
         dragConstraints={{
@@ -129,7 +129,7 @@ export default function Carousel() {
         <Images imgIndex={imgIndex} />
       </motion.div>
       <Dots imgIndex={imgIndex} setImgIndex={setImgIndex} />
-      <GradientEdges />
+        <GradientEdges />
     </div>
   );
 }

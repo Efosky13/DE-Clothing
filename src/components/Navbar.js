@@ -17,6 +17,8 @@ import { RiMessage2Line } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { useCart } from "@/context/cartContext";
+import SearchResults from "./SearchResults";
+import { clothingProducts } from "@/data/product";
 
 const wrapperVariants = {
   open: {
@@ -71,6 +73,8 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -88,10 +92,20 @@ export default function Navbar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("Search Query:", searchQuery);
-    setSearchQuery("");
+    if (searchQuery.trim() !== '') {
+      const results = clothingProducts.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(results);
+      setShowResults(true);
+    } else {
+      setFilteredProducts([]);
+      setShowResults(false);
+    }
   };
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -118,11 +132,11 @@ export default function Navbar() {
           <Link href={"/"}><Image src={'/logo.svg'} width={220} height={48} alt="" priority={true} /></Link>
         </div>
       </div>
-      <div onSubmit={handleSearch} className="lg:flex sm:block w-64 gap-2">
+      <div onSubmit={handleSearch} className="md:flex hidden sm:block w-96 gap-2">
         <input
           type="text"
           placeholder="Search Products, Brands and Categories"
-          className="w-full py-2 px-4 focus:outline-none border rounded-md"
+          className="w-full py-2 px-4 focus:outline-none border rounded-md" 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -304,6 +318,22 @@ export default function Navbar() {
           <span className="lg:ml-1 md:flex hidden">Cart</span>
         </Link>
       </div>
+        {/* <div onSubmit={handleSearch} className="md:hidden flex bottom-2 sm:block w-full gap-2">
+        <input
+          type="text"
+          placeholder="Search Products, Brands and Categories"
+          className="w-full py-2 px-4 focus:outline-none border rounded-md" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-yellow-500 hover:bg-yellow-700 text-white px-4 hover:shadow-md rounded-md py-2"
+        >
+          Search
+        </button>
+      </div> */}
+      {showResults && <SearchResults results={filteredProducts} />}
     </nav>
   );
 }

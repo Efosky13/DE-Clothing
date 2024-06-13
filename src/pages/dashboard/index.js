@@ -24,7 +24,6 @@ const initialOrders = [
       { name: "Product 3", quantity: 2, price: "$19.99" },
     ],
   },
-  // Add more orders as needed
 ];
 
 const Dashboard = () => {

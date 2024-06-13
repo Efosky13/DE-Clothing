@@ -35,7 +35,7 @@ export default function AuthPage() {
       // Handle signin logic
     }
     // Redirect or show a message on success
-    router.push("/dashboard"); // Example redirect to a dashboard page
+    router.push("/dashboard");
   };
 
   return (

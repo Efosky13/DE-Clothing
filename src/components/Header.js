@@ -56,11 +56,12 @@ export default function Header() {
         setIsCatOpen(!isCatOpen);
     }
     const toggleCatUp = () => {
-        setIsCatOpen(false);
+        setIsCatOpen(true);
     }
+
   return (
     <div className=" bg-white">
-    <div className=" relative">
+    <div className=" relative mx-5">
     <motion.div
             initial={false}
             animate={isCatOpen ? "open" : "closed"}
@@ -71,7 +72,7 @@ export default function Header() {
                 clothingProducts.map(cp => {
                     return (
                         <motion.div variants={itemVariants} key={cp.id} className=" items-center flex">
-                            <Link href={`/`} className=" flex items-center">
+                            <Link href={`/`} className=" flex items-center hover:text-yellow-500" onClick={toggleCat}>
                                     <motion.span
                                     variants={actionIconVariants}>{cp.icons}</motion.span>
                                     <span className=" ml-1">{cp.name}</span>
@@ -84,7 +85,7 @@ export default function Header() {
       <div className=" flex items-center">
         
         <span><BiSolidCategory /></span>
-        <span className="ml-1" onMouseEnter={toggleCat} onMouseLeave={ toggleCatUp}>Categories</span>
+        <span className="ml-1" onMouseEnter={toggleCat}>Categories</span>
         <motion.span
         variants={iconVariants}>{isCatOpen ? <IoIosArrowUp /> : <IoIosArrowDown /> }</motion.span>
       </div>
