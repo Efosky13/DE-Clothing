@@ -129,7 +129,27 @@ export default function Navbar() {
         )}
         {isMenuOpen && <div>{/* The Categories Go Here */}</div>}
         <div className="mr-3">
-          <Link href={"/"}><Image src={'/logo.svg'} width={220} height={48} alt="" priority={true} /></Link>
+          <Link href={"/"}>
+          <svg width="270" height="34" viewBox="0 0 270 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          {`
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+            .custom-font {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+    .black-text {
+      fill: black;
+    }
+    .yellow-text {
+      fill: #f59e0b;
+            }
+          `}
+        </style>
+        <text x="10" y="24" className="custom-font black-text" fontSize="24">De</text>
+        <text x="50" y="24" className="custom-font yellow-text" fontSize="24">Clothings</text>
+      </svg>
+          </Link>
         </div>
       </div>
       <div onSubmit={handleSearch} className="md:flex hidden sm:block w-96 gap-2">

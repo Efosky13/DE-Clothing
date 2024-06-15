@@ -1,4 +1,11 @@
 <svg width="270" height="34" viewBox="0 0 270 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <text x="10" y="24" font-family="Arial, sans-serif" font-size="24" fill="black">De Clothing</text>
-  <!-- <text x="70" y="24" font-family="Arial, sans-serif" font-size="24" fill="black">Clothing</text> -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    .custom-font {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      fill: black;
+    }
+  </style>
+  <text x="10" y="24" class="custom-font" font-size="24">De Clothing</text>
 </svg>
