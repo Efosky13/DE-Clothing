@@ -37,16 +37,6 @@ export default function ProductCard({ product }) {
           <p className="text-gray-700 mb-2">
             Rating: {product.rating} ({product.reviews} reviews)
           </p>
-          {/* <div className="mt-4">
-            <h3 className="text-sm font-medium">Available Sizes:</h3>
-            <div className="flex gap-2">
-              {product.sizes.map((size, index) => (
-                <span key={index} className="px-2 py-1 bg-gray-200 rounded-md">
-                  {size}
-                </span>
-              ))}
-            </div>
-          </div> */}
           <div className="flex space-x-2 mt-4">
             {product.colors.map((color, index) => (
               <span key={index} className="bg-gray-200 rounded-md px-2 py-1">

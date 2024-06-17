@@ -3,9 +3,8 @@ import ProductList from '../components/ProductList';
 import {FaApple, FaGoogle, FaShirt} from "react-icons/fa6"
 import { clothingProducts } from '@/data/product';
 import Carousel from '@/components/Carousel';
-import ProductCard from '@/components/ProductCard';
 import Header from '@/components/Header';
-import { GiSleevelessJacket, GiHoodie, GiRolledCloth, GiShorts, GiDress } from "react-icons/gi";
+import BgImage from '@/components/BgImage';
 
 const cP = clothingProducts.filter(cloth => cloth.name)
 
@@ -41,7 +40,7 @@ export default function Home() {
 
         </div>
       </div>
-     
+     <BgImage />
     </div>
   );
 }

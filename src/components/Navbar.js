@@ -119,7 +119,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`flex justify-between z-50 top-0 sticky align-center p-[1rem] ${scrolled ? " bg-white shadow-md" : "bg-transparent"}`}>
+    <nav className={`flex justify-between z-50 top-0 sticky align-center p-[1rem] ${scrolled ? " bg-white shadow-md" : "bg-white"}`}>
 
       <div className="flex items-center">
         {isCartPage && (
@@ -127,16 +127,19 @@ export default function Navbar() {
             {isMenuOpen ? <MdOutlineClose /> : <RxHamburgerMenu />}
           </button>
         )}
-        {isMenuOpen && <div>{/* The Categories Go Here */}</div>}
+        {isMenuOpen &&
+         <div>
+          {/* The Categories Go Here */}
+         </div>}
         <div className="mr-3">
           <Link href={"/"}>
-          <svg width="270" height="34" viewBox="0 0 270 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="230" height="34" viewBox="0 0 270 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <style>
           {`
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
             .custom-font {
       font-family: 'Poppins', sans-serif;
-      font-weight: 600;
+      font-weight: 400;
     }
     .black-text {
       fill: black;
@@ -146,8 +149,8 @@ export default function Navbar() {
             }
           `}
         </style>
-        <text x="10" y="24" className="custom-font black-text" fontSize="24">De</text>
-        <text x="50" y="24" className="custom-font yellow-text" fontSize="24">Clothings</text>
+        <text x="3" y="24" className="custom-font black-text" fontSize="20">De</text>
+        <text x="30" y="24" className="custom-font yellow-text" fontSize="20">Clothings</text>
       </svg>
           </Link>
         </div>
